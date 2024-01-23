@@ -18,12 +18,10 @@ jobs:
 
       - name: Install and Build
         run: |
-          cd src
           npm ci
           npm run-script deploy
       - name: Test
         run: |
-          cd src
           npm run-script test
   
       - name: Deploy to GitHub Pages
@@ -31,4 +29,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: src/dist/opendelivery-menu-generator
+          FOLDER: dist/opendelivery-menu-generator

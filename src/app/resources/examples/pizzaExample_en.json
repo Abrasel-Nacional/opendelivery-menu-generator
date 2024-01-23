@@ -1,0 +1,582 @@
+{
+  "lastUpdate": "2021-05-27T20:45:10.332Z",
+  "TTL": 500,
+  "id": "22815773000169-dbc7e35a-c936-4665-9e13-eb55eb8b6824",
+  "status": "AVAILABLE",
+  "basicInfo": {
+    "name": "Pizza Plaza",
+    "document": "22815773000169",
+    "corporateName": "Open Delivery Demo Pizza Place",
+    "description": "Food company specializing in pizzas.",
+    "averageTicket": 20,
+    "averagePreparationTime": 20,
+    "minOrderValue": {
+      "value": 20,
+      "currency": "USD"
+    },
+    "merchantType": "RESTAURANT",
+    "merchantCategories": ["PIZZA", "FAMILY_MEALS", "PREMIUM"],
+    "address": {
+      "country": "US",
+      "state": "CA",
+      "city": "Los Angeles",
+      "district": "Hollywood",
+      "street": "Plaza Avenue",
+      "number": "100",
+      "postalCode": "20111-000",
+      "complement": "2001",
+      "reference": "Yellow house",
+      "latitude": -23.54804,
+      "longitude": -46.6363
+    },
+    "contactEmails": ["suporte@opendelivery.com.br"],
+    "contactPhones": {
+      "commercialNumber": "11999999999",
+      "whatsappNumber": "11998888888"
+    },
+    "logoImage": {
+      "URL": "https://static.vecteezy.com/system/resources/previews/001/268/523/non_2x/fresh-delicious-pizza-vector.jpg",
+      "CRC-32": "432098ASDSR"
+    },
+    "bannerImage": {
+      "URL": "https://static-images.ifood.com.br/image/upload//capa/f2e44c31-73d9-4ebd-8892-115ecf64bdc1/202102121351_pNgw_c@2x.jpg",
+      "CRC-32": "09345UIHF98"
+    },
+    "createdAt": "2021-05-10T20:45:10.332Z"
+  },
+  "services": [
+    {
+      "id": "f078e8e2-3044-4eec-b4a8-8359810de123",
+      "status": "AVAILABLE",
+      "serviceType": "DELIVERY",
+      "menuId": "f627ccdc-6789-456f-a782-148538d5035b",
+      "serviceArea": {
+        "id": "f078e8e2-3044-4eec-b4a8-8359810de124",
+        "polygon": [
+          {
+            "geoCoordinates": [
+              {
+                "latitude": -20.2333,
+                "longitude": -20.8383
+              },
+              {
+                "latitude": -20.85008,
+                "longitude": -21.00007
+              },
+              {
+                "latitude": -21.15002,
+                "longitude": -21.95483
+              }
+            ],
+            "price": {
+              "value": 5,
+              "currency": "BRL"
+            },
+            "estimateDeliveryTime": 25
+          }
+        ],
+        "geoRadius": {
+          "geoMidpointLatitude": -20.2333,
+          "geoMidpointLongitude": -20.8383,
+          "radius": [
+            {
+              "size": 10,
+              "price": {
+                "value": 5.5,
+                "currency": "BRL"
+              },
+              "estimateDeliveryTime": 10
+            }
+          ]
+        }
+      },
+      "serviceHours": {
+        "id": "fb093d8c-2ca5-40fb-afcf-472fbdae81cc",
+        "weekHours": [
+          {
+            "dayOfWeek": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY"
+            ],
+            "timePeriods": {
+              "startTime": "10:00:00.000Z",
+              "endTime": "18:00:00.000Z"
+            }
+          },
+          {
+            "dayOfWeek": ["SATURDAY", "SUNDAY"],
+            "timePeriods": {
+              "startTime": "14:00:00.000Z",
+              "endTime": "18:00:00.000Z"
+            }
+          }
+        ],
+        "holidayHours": [
+          {
+            "date": "2021-05-27",
+            "timePeriods": {
+              "startTime": "12:00:00.000Z",
+              "endTime": "17:00:00.000Z"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "f078e8e2-3044-4eec-b4a8-8359810dexxx",
+      "status": "AVAILABLE",
+      "serviceType": "TAKEOUT",
+      "menuId": "f627ccdc-6789-456f-a782-148538d5035x",
+      "serviceArea": {
+        "id": "f078e8e2-3044-4eec-b4a8-8359810de124",
+        "polygon": [
+          {
+            "geoCoordinates": [
+              {
+                "latitude": -20.2333,
+                "longitude": -20.8383
+              },
+              {
+                "latitude": -20.85008,
+                "longitude": -21.00007
+              },
+              {
+                "latitude": -21.15002,
+                "longitude": -21.95483
+              }
+            ],
+            "price": {
+              "value": 5,
+              "currency": "BRL"
+            },
+            "estimateDeliveryTime": 25
+          }
+        ],
+        "geoRadius": {
+          "geoMidpointLatitude": -20.2333,
+          "geoMidpointLongitude": -20.8383,
+          "radius": [
+            {
+              "size": 10,
+              "price": {
+                "value": 5.5,
+                "currency": "BRL"
+              },
+              "estimateDeliveryTime": 10
+            }
+          ]
+        }
+      },
+      "serviceHours": {
+        "id": "fb093d8c-2ca5-40fb-afcf-472fbdae81cc",
+        "weekHours": [
+          {
+            "dayOfWeek": [
+              "MONDAY",
+              "TUESDAY",
+              "WEDNESDAY",
+              "THURSDAY",
+              "FRIDAY"
+            ],
+            "timePeriods": {
+              "startTime": "09:00:00.000Z",
+              "endTime": "22:00:00.000Z"
+            }
+          },
+          {
+            "dayOfWeek": ["SATURDAY"],
+            "timePeriods": {
+              "startTime": "14:00:00.000Z",
+              "endTime": "18:00:00.000Z"
+            }
+          }
+        ],
+        "holidayHours": [
+          {
+            "date": "2021-05-27",
+            "timePeriods": {
+              "startTime": "12:00:00.000Z",
+              "endTime": "17:00:00.000Z"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "items": [
+    {
+      "id": "732bd31e-77fc-47ee-88ee-a0437f97b198",
+      "name": "Medium - 2 flavors",
+      "description": "Medium two-flavored pizza.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://extra.globo.com/incoming/20452739-6e6-b3a/w640h360-PROP/pizza-dois-sabores.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "serving": 8,
+      "unit": "unit"
+    },
+    {
+      "id": "502ecf11-0509-48ed-b63c-6211c48fd9b9",
+      "name": "1/2 Pepperoni",
+      "description": "Pepperoni slices with cheese.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/022/994/042/non_2x/the-pepperoni-pizza-and-a-piece-of-streched-cheese-pizza-with-ai-generated-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Pizza com massa de trigo.",
+        "calories": "2000 Cal",
+        "allergen": ["GLUTEN"]
+      },
+      "serving": 1,
+      "unit": "UN"
+    },
+    {
+      "id": "502ecf11-0509-48ed-b63c-6211c48fd9b8",
+      "name": "Pepperoni Pizza",
+      "description": "Large Pepperoni Pizza, lots of cheese.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/022/994/042/non_2x/the-pepperoni-pizza-and-a-piece-of-streched-cheese-pizza-with-ai-generated-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Pizza com massa de trigo.",
+        "calories": "2000 Cal",
+        "allergen": ["GLUTEN"]
+      },
+      "serving": 2,
+      "unit": "UN"
+    },
+    {
+      "id": "7e507cab-7235-4f75-a0c2-e955fb2f2048",
+      "name": "1/2 Mozzarella",
+      "description": "Delicious mozzarella pizza.",
+      "externalCode": "24",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/002/529/896/non_2x/the-delicious-taste-of-pizza-and-slices-of-cheese-with-mozzarella-and-tomatoes-triangle-pizza-with-stretching-cheese-and-spices-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Contains preservatives",
+        "calories": "2500 Cal",
+        "allergen": ["GLUTEN", "LACTOSE"]
+      },
+      "serving": 1,
+      "unit": "UN"
+    },
+    {
+      "id": "7e507cab-7235-4f75-a0c2-e955fb2f2047",
+      "name": "Mozzarella Pizza",
+      "description": "Saborosa Pizza inteira sabor queijo mussarela com rodelas de tomate.",
+      "externalCode": "24",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/002/529/896/non_2x/the-delicious-taste-of-pizza-and-slices-of-cheese-with-mozzarella-and-tomatoes-triangle-pizza-with-stretching-cheese-and-spices-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Pizza com massa de trigo.",
+        "calories": "2500 Cal",
+        "allergen": ["GLUTEN", "LACTOSE"]
+      },
+      "serving": 2,
+      "unit": "UN"
+    },
+    {
+      "id": "2c0f3447-5309-49cc-a167-4eac5c664470",
+      "name": "Banana",
+      "description": "Banana Pizza with cream.",
+      "externalCode": "25",
+      "image": {
+        "URL": "https://www.anamariabrogui.com.br/assets/uploads/receitas/fotos/usuario-1932-5a1b7911dfda6e3c351c30de564da267.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Contains preservatives",
+        "calories": "2500 Cal",
+        "allergen": ["GLUTEN"]
+      },
+      "unit": "unit"
+    },
+    {
+      "id": "732bd31e-77fc-47ee-88ee-a0437f97b188",
+      "name": "Soda",
+      "description": "Soda, lots of flavors.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/006/793/030/non_2x/realistic-soda-can-mock-up-set-blank-aluminium-can-branding-template-design-beverage-can-set-with-copy-space-3d-product-illustration-free-vector.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "isAlcoholic": false
+      },
+      "serving": 1,
+      "unit": "UN"
+    },
+    {
+      "id": "732bd31e-77fc-47ee-88ee-a0437f97b177",
+      "name": "Water Bottle 500ml",
+      "description": "Cold Water Bottle.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/003/173/298/non_2x/plastic-water-bottle-isolated-on-white-background-with-clipping-path-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+
+      "serving": 1,
+      "unit": "UN"
+    },
+    {
+      "id": "b728fd88-4af0-43f7-956f-95c251f01ddd",
+      "name": "Vanilla",
+      "description": "Vanilla flavored ice-cream.",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/002/066/749/large_2x/vanilla-bean-ice-cream-top-view-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Melts easily.",
+        "calories": "1000 Cal",
+        "allergen": ["GLUTEN, LACTOSE"]
+      },
+      "serving": 1,
+      "unit": "UN"
+    },
+    {
+      "id": "b728fd88-4af0-43f7-956f-95c251f01ttt",
+      "name": "Strawberry",
+      "description": "Strawberry flavored ice-cream",
+      "externalCode": "23",
+      "image": {
+        "URL": "https://static.vecteezy.com/system/resources/previews/001/960/588/non_2x/strawberry-ice-cream-flavour-in-white-bowl-free-photo.jpg",
+        "CRC-32": "09345UIHF98"
+      },
+      "nutritionalInfo": {
+        "description": "Melts easily.",
+        "calories": "1000 Cal",
+        "allergen": ["GLUTEN, LACTOSE"]
+      },
+      "serving": 1,
+      "unit": "UN"
+    }
+  ],
+  "menus": [
+    {
+      "id": "f627ccdc-6789-456f-a782-148538d5035b",
+      "name": "Menu Principal - DELIVERY",
+      "description": "Pizza menu",
+      "externalCode": "123",
+      "disclaimer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "categoryId": [
+        "92fad022-2c28-4239-a026-989f5b555cb7",
+        "6bb71850-1d40-49f9-8046-b13e068c0cab"
+      ]
+    },
+    {
+      "id": "f627ccdc-6789-456f-a782-148538d5035x",
+      "name": "Menu Principal - TAKEOUT",
+      "description": "Pizza menu",
+      "externalCode": "123",
+      "disclaimer": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "categoryId": [
+        "92fad022-2c28-4239-a026-989f5b555cb7",
+        "6bb71850-1d40-49f9-8046-b13e068c0cab",
+        "6bb71850-1d40-49f9-8046-b13e068c0czy"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "92fad022-2c28-4239-a026-989f5b555cb7",
+      "index": 0,
+      "name": "Salted Pizza",
+      "description": "Salted pizza flavors.",
+      "image": {
+        "URL": "https://food-company.com/category1.png",
+        "CRC-32": "09345UIHF98"
+      },
+      "externalCode": "13",
+      "status": "AVAILABLE",
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "itemOfferId": [
+        "f080cfb3-5c4a-4eb7-907d-2de3bbb5dfb9",
+        "1080cfb3-5c4a-4eb7-907d-2de3bbb5dfb8",
+        "377b99ba-5413-43d1-b875-7cdcaa728647"
+      ]
+    },
+    {
+      "id": "6bb71850-1d40-49f9-8046-b13e068c0cab",
+      "index": 1,
+      "name": "Drinks",
+      "description": "All Flavor Drinks",
+      "image": {
+        "URL": "https://food-company.com/category2.png",
+        "CRC-32": "09345UIHF98"
+      },
+      "externalCode": "13",
+      "status": "AVAILABLE",
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "itemOfferId": [
+        "377b99ba-5413-43d1-b875-7cdcaa728611",
+        "377b99ba-5413-43d1-b875-7cdcaa728612"
+      ]
+    },
+    {
+      "id": "6bb71850-1d40-49f9-8046-b13e068c0czy",
+      "index": 1,
+      "name": "Ice Creams",
+      "description": "Ice Creams - Only TO GO.",
+      "image": {
+        "URL": "https://food-company.com/category3.png",
+        "CRC-32": "09345UIHF98"
+      },
+      "externalCode": "13",
+      "status": "AVAILABLE",
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "itemOfferId": [
+        "377b99ba-5413-43d1-b875-7cdcaa728619",
+        "377b99ba-5413-43d1-b875-7cdcaa728618"
+      ]
+    }
+  ],
+  "itemOffers": [
+    {
+      "id": "f080cfb3-5c4a-4eb7-907d-2de3bbb5dfb9",
+      "itemId": "732bd31e-77fc-47ee-88ee-a0437f97b198",
+      "index": 0,
+      "price": { "value": 0, "originalValue": 0, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "optionGroupsId": [
+        "fe67e551-f42f-499a-8afb-0ed893c71fa3",
+        "c524c066-96fa-458d-b78c-3712661529b3"
+      ]
+    },
+    {
+      "id": "1080cfb3-5c4a-4eb7-907d-2de3bbb5dfb8",
+      "itemId": "502ecf11-0509-48ed-b63c-6211c48fd9b8",
+      "index": 0,
+      "price": { "value": 45, "originalValue": 45, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "optionGroupsId": ["c524c066-96fa-458d-b78c-3712661529b3"]
+    },
+    {
+      "id": "377b99ba-5413-43d1-b875-7cdcaa728647",
+      "itemId": "7e507cab-7235-4f75-a0c2-e955fb2f2047",
+      "index": 1,
+      "price": { "value": 30, "originalValue": 30, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"],
+      "optionGroupsId": ["c524c066-96fa-458d-b78c-3712661529b3"]
+    },
+    {
+      "id": "377b99ba-5413-43d1-b875-7cdcaa728611",
+      "itemId": "732bd31e-77fc-47ee-88ee-a0437f97b188",
+      "index": 1,
+      "price": { "value": 8, "originalValue": 8, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"]
+    },
+    {
+      "id": "377b99ba-5413-43d1-b875-7cdcaa728612",
+      "itemId": "732bd31e-77fc-47ee-88ee-a0437f97b177",
+      "index": 1,
+      "price": { "value": 6, "originalValue": 6, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"]
+    },
+    {
+      "id": "377b99ba-5413-43d1-b875-7cdcaa728619",
+      "itemId": "b728fd88-4af0-43f7-956f-95c251f01ddd",
+      "index": 1,
+      "price": { "value": 10, "originalValue": 10, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"]
+    },
+    {
+      "id": "377b99ba-5413-43d1-b875-7cdcaa728618",
+      "itemId": "b728fd88-4af0-43f7-956f-95c251f01ttt",
+      "index": 1,
+      "price": { "value": 10, "originalValue": 10, "currency": "BRL" },
+      "availabilityId": ["11d063c4-73a7-4f87-a0eb-71636cc02029"]
+    }
+  ],
+  "optionGroups": [
+    {
+      "id": "fe67e551-f42f-499a-8afb-0ed893c71fa3",
+      "index": 0,
+      "name": "Choose your salted pizza flavor",
+      "description": "Choose your salted pizza flavor.",
+      "externalCode": "12",
+      "status": "AVAILABLE",
+      "minPermitted": 2,
+      "maxPermitted": 2,
+      "options": [
+        {
+          "id": "e5232f14-430c-4a94-8ff6-289d5a16a87a",
+          "itemId": "502ecf11-0509-48ed-b63c-6211c48fd9b9",
+          "index": 0,
+          "price": { "value": 25, "originalValue": 25, "currency": "BRL" },
+          "maxPermitted": 1
+        },
+        {
+          "id": "e5232f14-430c-4a94-8ff6-289d5a16a87b",
+          "itemId": "7e507cab-7235-4f75-a0c2-e955fb2f2048",
+          "index": 1,
+          "price": { "value": 21, "originalValue": 21, "currency": "BRL" },
+          "maxPermitted": 9
+        }
+      ]
+    },
+    {
+      "id": "c524c066-96fa-458d-b78c-3712661529b3",
+      "index": 0,
+      "name": "Choose your sweeted pizza flavor",
+      "description": "Choose your sweeted pizza flavor.",
+      "externalCode": "12",
+      "status": "AVAILABLE",
+      "minPermitted": 0,
+      "maxPermitted": 0,
+      "options": [
+        {
+          "id": "2419d582-357f-4149-9089-12321537f147",
+          "itemId": "732bd31e-77fc-47ee-88ee-a0437f97b188",
+          "index": 0,
+          "price": { "value": 6, "originalValue": 8, "currency": "BRL" },
+          "maxPermitted": 1
+        },
+        {
+          "id": "2419d582-357f-4149-9089-12321537f148",
+          "itemId": "732bd31e-77fc-47ee-88ee-a0437f97b177",
+          "index": 0,
+          "price": { "value": 4.5, "originalValue": 6, "currency": "BRL" },
+          "maxPermitted": 9
+        }
+      ]
+    }
+  ],
+  "availabilities": [
+    {
+      "id": "11d063c4-73a7-4f87-a0eb-71636cc02029\"",
+      "startDate": "05/01/2021",
+      "endDate": "05/30/2021",
+      "hours": [
+        {
+          "dayOfWeek": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"],
+          "timePeriods": {
+            "startTime": "10:00:00.000Z",
+            "endTime": "18:00:00.000Z"
+          }
+        },
+        {
+          "dayOfWeek": ["SATURDAY", "SUNDAY"],
+          "timePeriods": {
+            "startTime": "14:00:00.000Z",
+            "endTime": "18:00:00.000Z"
+          }
+        }
+      ]
+    }
+  ]
+}

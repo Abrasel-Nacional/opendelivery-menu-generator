@@ -7,6 +7,8 @@ import { IMenu } from '../models/menu';
 import { IMerchant } from '../models/merchant';
 import { IOptionGroup } from '../models/option-group';
 import { IService } from '../models/service';
+import { IExample } from "../models/example";
+import { resource } from '../../resources/routes'
 
 @Injectable({
   providedIn: 'root'
@@ -54,5 +56,19 @@ export class MerchantService {
   getOptionGroupById(optionGroupId: string): IOptionGroup | undefined {
     return this.getMerchant?.optionGroups?.find(optionGroup => (optionGroup.id == optionGroupId))
   }
+
+  getExample(exampleId: number): IExample | undefined {
+    return resource.examples.find(example => example.id == exampleId);
+    
+  }
+
+  getExamples(): IExample[] {
+    let examples = [];
+
+    for (let index = 0; index < resource.examples.length; index++) {
+      examples[index] = resource.examples[index];
+    }
+    return examples;
+}
 
 }

@@ -1,0 +1,137 @@
+<main class="container-fluid m-0 p-0">
+  <div class="menu-header mx-3 row">
+    <h1
+      class="menu__title col-12 col-xl-5 col-lg-12 d-flex justify-content-center justify-content-xl-start pt-3"
+    >
+      {{ menuActive?.name }}
+    </h1>
+    <div
+      class="col-xl-7 col-lg-12 d-flex justify-content-center justify-content-xl-end"
+    >
+      <div class="delivery-type d-flex">
+        <div class="pt-3">
+          <img class="moto-img" src="assets/images/icons/motorbike.png" />
+        </div>
+        <span class="type pt-4">SERVICE TYPE: </span>
+      </div>
+
+      <mat-button-toggle-group
+        #group="matButtonToggleGroup"
+        [value]="deliveryTypeSelected"
+        (change)="onToggleChange(group.value)"
+      >
+        <mat-button-toggle
+          type="button"
+          value="{{ TYPE_DELIVERY }}"
+          class="type-btn btn-secundary px-3 m-3"
+          (click)="setMenuActiveByServiceType(TYPE_DELIVERY)"
+          >DELIVERY</mat-button-toggle
+        >
+        <mat-button-toggle
+          type="button"
+          value="{{ TYPE_TAKEOUT }}"
+          class="type-btn btn-secundary px-3 m-3"
+          (click)="setMenuActiveByServiceType(TYPE_TAKEOUT)"
+          >TAKEOUT</mat-button-toggle
+        >
+        <mat-button-toggle
+          type="button"
+          value="{{ TYPE_INDOOR }}"
+          class="type-btn btn-secundary px-3 m-3"
+          (click)="setMenuActiveByServiceType(TYPE_INDOOR)"
+          >INDOOR</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div class="accordion accordion-flush mx-3 mb-3" id="accordion-categories">
+    <div
+      class="accordion-item"
+      *ngFor="let categoryId of menuActive?.categoryId; let i = index"
+    >
+      <button
+        class="accordion-button"
+        [ngClass]="{ collapsed: i != 0 }"
+        type="button"
+        data-bs-toggle="collapse"
+        [attr.data-bs-target]="'#collapse' + i"
+        aria-expanded="true"
+        [attr.aria-controls]="'collapse' + i"
+      >
+        <span class="category__name">
+          {{ getCategoryById(categoryId)?.name }}
+          <br />
+          <span class="category__id"> CategoryId: {{ categoryId }} </span>
+        </span>
+      </button>
+
+      <div
+        [id]="'collapse' + i"
+        class="accordion-collapse collapse"
+        [ngClass]="{ show: i == 0 }"
+        [attr.aria-labelledby]="'heading' + i"
+      >
+        <div class="accordion-body">
+          <div class="row">
+            <div
+              class="col-xl-4 col-md-6 col-xs-12 d-flex p-3"
+              *ngFor="
+                let itemOfferId of getCategoryById(categoryId)?.itemOfferId
+              "
+            >
+              <div
+                class="card text-center bg-light w-100 px-4 py-3 justify-content-between cursor-pointer"
+                style="cursor: pointer"
+                (click)="openItemOfferDetailsDialog(itemOfferId)"
+              >
+                <div class="details d-flex justify-content-end">
+                  <img class="details-img" src="assets/images/icons/plus.png" />
+                  <span class="d-flex p-1">See More</span>
+                </div>
+                <img
+                  class="item-offer__img"
+                  [src]="
+                    getItemById(getItemOfferById(itemOfferId)?.itemId)?.image
+                      ?.URL
+                  "
+                />
+                <h6 class="item-offer__title">
+                  {{ getItemById(getItemOfferById(itemOfferId)?.itemId)?.name }}
+                </h6>
+                <div class="item-offer__id">ItemOfferId: {{ itemOfferId }}</div>
+                <div class="item-offer__description">
+                  {{
+                    getItemById(getItemOfferById(itemOfferId)?.itemId)
+                      ?.description
+                  }}
+                </div>
+                <div class="d-flex pt-4 row">
+                  <div class="d-flex col-8">
+                    <img class="user-img" src="assets/images/icons/user.png" />
+                    <span class="user">
+                      Serving:
+                      {{
+                        existProperty(
+                          getItemById(getItemOfferById(itemOfferId)?.itemId)
+                            ?.serving
+                        )
+                      }}
+                    </span>
+                  </div>
+                  <div class="price-div d-flex col-4 justify-content-end">
+                    <span class="price">
+                      {{
+                        getItemOfferById(itemOfferId)?.price?.value | currency
+                      }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

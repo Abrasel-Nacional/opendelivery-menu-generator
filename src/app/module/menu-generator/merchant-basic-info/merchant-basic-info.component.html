@@ -1,0 +1,204 @@
+<main class="merchant mx-3 mt-3">
+  <div class="merchant__suport-banner">
+    <div
+      class="merchant__banner"
+      [ngStyle]="{
+        'background-image': 'url' + '(' + BASIC_INFO?.bannerImage?.URL + ')'
+      }"
+    ></div>
+    <button
+      data-cy="btn-return"
+      (click)="navigateToRoot()"
+      class="back d-flex align-items-center justify-content-center"
+    >
+      <img
+        class="icon"
+        [src]="ICONS.arrowLeft.src"
+        [alt]="ICONS.arrowLeft.alt"
+      />
+      {{ RETURN }}
+    </button>
+  </div>
+
+  <div class="container-fluid m-0 px-3 px-md-3">
+    <div class="container-fluid merchant__header p-0 row">
+      <img
+        [src]="BASIC_INFO?.logoImage?.URL"
+        class="merchant__logo me-md-4 p-0 col-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 img-fluid rounded-circle border"
+        alt="Logo Merchant"
+      />
+
+      <div
+        class="merchant__minimal-info align-items-center m-auto p-0 col-8 col-sm-9 col-md-4 col-lg-5 col-xl-5"
+      >
+        <h6>{{ BASIC_INFO?.name }}</h6>
+        <h6 class="merchant__sub-title">
+          Description:
+          <span class="sub-title__content">
+            {{ BASIC_INFO?.description }}
+          </span>
+        </h6>
+        <h6 class="merchant__sub-title">
+          Categories:
+          <span class="sub-title__content categories">
+            <ng-container
+              *ngFor="
+                let category of BASIC_INFO?.merchantCategories;
+                let indexCategory = index
+              "
+            >
+              {{ category }}
+              <ng-container *ngIf="indexCategory >= 0"> , </ng-container>
+            </ng-container>
+          </span>
+        </h6>
+      </div>
+
+      <div
+        class="merchant__order d-flex flex-column align-items-center justify-content-center mt-4 mt-md-0 m-auto col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"
+      >
+        <div class="merchant__order__tag">
+          <img
+            class="icon"
+            [src]="ICONS.shoppingBag.src"
+            [alt]="ICONS.shoppingBag.alt"
+          />
+          <div class="detail">
+            <span class="title"> Minimum order: </span>
+            <span class="content">{{
+              BASIC_INFO?.minOrderValue?.value
+                | currency : DEFAULT_CURRENCY_PIPE
+            }}</span>
+          </div>
+        </div>
+
+        <div class="merchant__order__tag">
+          <img
+            class="icon"
+            [src]="ICONS.ticketCurrency.src"
+            [alt]="ICONS.ticketCurrency.alt"
+          />
+          <div class="detail">
+            <span class="title"> Average ticket: </span>
+            <span class="content">{{
+              BASIC_INFO?.averageTicket | currency : DEFAULT_CURRENCY_PIPE
+            }}</span>
+          </div>
+        </div>
+
+        <div class="merchant__order__tag">
+          <img class="icon" [src]="ICONS.timer.src" [alt]="ICONS.timer.alt" />
+          <div class="detail">
+            <span class="title">Preparation Time: </span>
+            <span class="content"
+              >{{ BASIC_INFO?.averagePreparationTime }} Min.</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="merchant__basic-info container-fluid row">
+      <div class="address p-0 mt-3 mt-lg-0 col-12 col-md-6 col-lg-6 col-xl-4">
+        <h6 class="address__title">Address</h6>
+        <div class="address__content">
+          <img
+            class="icon"
+            [src]="ICONS.location.src"
+            [alt]="ICONS.location.alt"
+          />
+          <p class="m-1">{{ address }}</p>
+        </div>
+      </div>
+
+      <div class="contact p-0 mt-3 mt-lg-0 col-12 col-md-6 col-lg-6 col-xl-4">
+        <h6 class="contact__title">Contact</h6>
+        <div class="contact__content">
+          <div class="contact-phone">
+            <img class="icon" [src]="ICONS.phone.src" [alt]="ICONS.phone.alt" />
+            <p class="m-1">
+              {{ this.BASIC_INFO?.contactPhones?.commercialNumber }}
+            </p>
+          </div>
+
+          <div class="contact-whatsapp">
+            <img
+              class="icon"
+              [src]="ICONS.whatsAppIconWithPhone.src"
+              [alt]="ICONS.whatsAppIconWithPhone.alt"
+            />
+            <p class="m-1">
+              {{ this.BASIC_INFO?.contactPhones?.whatsappNumber }}
+            </p>
+          </div>
+        </div>
+
+        <div class="contact__content"></div>
+
+        <div class="contact__content">
+          <img class="icon" [src]="ICONS.email.src" [alt]="ICONS.email.alt" />
+          <p class="m-1">
+            <ng-container
+              *ngFor="
+                let email of this.BASIC_INFO?.contactEmails;
+                let emailIndex = index
+              "
+            >
+              {{ email }}
+            </ng-container>
+          </p>
+        </div>
+      </div>
+
+      <div class="other-info p-0 mt-3 mt-lg-0 col-12 col-lg-12 col-xl-4">
+        <h6 class="other-info__title">other information</h6>
+
+        <div class="other-info__content">
+          <p class="mt-1 mb-0">CNPJ : {{ this.BASIC_INFO?.document }}</p>
+        </div>
+
+        <div class="other-info__content">
+          <p class="mt-0 mb-0">
+            Corporate name: {{ this.BASIC_INFO?.corporateName }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <div class="merchant__opening-hours container-fluid p-0 mb-3">
+      <div class="merchant__opening-hours__header d-flex align-items-center">
+        <img class="icon" [src]="ICONS.clock.src" [alt]="ICONS.clock.alt" />
+        <h6 class="title">opening hours</h6>
+      </div>
+
+      <div
+        class="merchant__opening-hours__container justify-content-center justify-content-lg-center justify-content-xxl-start row m-auto p-0 m-0 mt-3"
+      >
+        <ng-container
+          *ngFor="let week of serviceActive?.serviceHours?.weekHours"
+        >
+          <ng-container *ngFor="let day of week?.dayOfWeek">
+            <div class="hours-card col-6 col-sm-6 col-md-4 col-lg-3 p-0">
+              <div class="title d-flex justify-content-center">{{ day }}</div>
+
+              <div class="content d-flex align-items-center">
+                <img
+                  class="icon me-3"
+                  [src]="ICONS.clock.src"
+                  [alt]="ICONS.clock.alt"
+                />
+                <p class="m-auto">
+                  {{ week?.timePeriods?.startTime }} -
+                  {{ week?.timePeriods?.endTime }}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</main>

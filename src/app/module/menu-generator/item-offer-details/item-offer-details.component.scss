@@ -12,6 +12,7 @@
     .item-offer__title {
       font-weight: 600;
       color: $grey;
+      font-size: 13px;
     }
 
     .icon {
@@ -27,16 +28,29 @@
       height: 200px;
     }
 
+    .item-offer__id {
+      font-weight: 600;
+      color: $grey;
+      font-size: 12px;
+    }
+
     .item-offer__title {}
 
     .item-offer__nutritional-info {
+      .title {
+          font-weight: 700;
+          color: $black;
+          font-size: 13px;
+        }
       .nutritional-list {
         .nutritional-item {
-          color: $light-grey;
+          color: $grey;
+          font-size: 13px;
 
           .title {
             font-weight: 500;
             color: $black;
+            font-size: 13px;
           }
         }
       }
@@ -44,9 +58,16 @@
 
     .item-offer__options {
       .option-group {
+
         .option-group__details {
           .option-group__description {
             font-size: 14px;
+          }
+
+          .option-group__id {
+            font-weight: 600;
+            color: $grey;
+            font-size: 12px;
           }
         }
 
@@ -77,7 +98,7 @@
           }
 
           .option__description {
-            color: $light-grey;
+            color: $black;
             margin-left: 18px;
             margin-top: 0px;
             margin-bottom: 0px;
@@ -85,8 +106,8 @@
 
           .option__id {
             font-size: 12px;
-            font-weight: 600;
-            color: $black;
+            font-weight: 400;
+            color: $grey;
             margin-left: 18px;
             margin-top: 0px;
             margin-bottom: 0px;

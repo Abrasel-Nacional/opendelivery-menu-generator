@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test --watch=false --browsers=ChromeHeadless",
-    "deploy": "ng build --base-href=https://programmersit.github.io/opendelivery-menu-generator/ "
+    "deploy": "ng build --base-href=https://abrasel-nacional.github.io/opendelivery-menu-generator/"
   },
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
     "@angular/compiler": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@angular/material": "^14.0.4",
+    "@angular/material": "^14.2.7",
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
