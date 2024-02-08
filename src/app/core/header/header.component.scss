@@ -1,4 +1,4 @@
-@use "src/assets/scss/colors"as *;
+@use "src/assets/scss/colors" as *;
 
 #container {
   font-size: 1.3rem;
@@ -28,11 +28,19 @@
     max-height: 2.7rem;
   }
 
+  .logo-abrasel {
+    max-height: 3.5rem;
+  }
+
 }
 
 @media screen and (max-width:900px) {
   .logo-programmers {
     display: none;
+  }
+
+  .logo-abrasel {
+    max-height: 3.5rem;
   }
 }
 

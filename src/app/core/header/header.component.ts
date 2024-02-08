@@ -19,6 +19,9 @@ export class HeaderComponent implements OnInit {
   readonly OPEN_DELIVERY_LOGO_PATH: string = "assets/images/logo/open-delivery.webp";
   readonly OPEN_DELIVERY_DOC_URL: string = "https://abrasel-nacional.github.io/docs/";
 
+  readonly ABRASEL_LOGO_ALTERNATIVE_TEXT: string = "Associação Brasileira de Bares e Restaurantes";
+  readonly ABRASEL_LOGO_PATH: string = "assets/images/logo/logo-abrasel.png";
+
   readonly PROGRAMMERS_LOGO_ALTERNATIVE_TEXT: string = "Programmer's Beyond IT";
   readonly PROGRAMMERS_LOGO_PATH: string = "assets/images/logo/programmers-colorido.png";
 
