@@ -89,7 +89,7 @@
             }
           },
           {
-            "dayOfWeek": ["SATURDAY", "SUNDAY"],
+            "dayOfWeek": ["SATURDAY"],
             "timePeriods": {
               "startTime": "14:00:00.000Z",
               "endTime": "18:00:00.000Z"

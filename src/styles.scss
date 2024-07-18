@@ -209,6 +209,28 @@ select {
   text-transform: none;
 }
 
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.radio-option {
+  font-weight: normal;
+  margin-bottom: 1rem;
+  display: block;
+  color: #0d6366;
+
+  .mat-radio-outer-circle {
+    border-color: #0d6366 !important;
+  }
+
+  .mat-radio-inner-circle {
+    background-color: #0d6366 !important;
+  }
+}
+
 /**
    * Correct the inability to style clickable types in iOS and Safari.
    */
@@ -386,3 +408,5 @@ app-root {
   grid-template-rows: auto 0fr 1fr auto;
   min-height: 100vh;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

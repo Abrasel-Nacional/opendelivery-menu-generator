@@ -3,7 +3,7 @@
     <div
       class="merchant__banner"
       [ngStyle]="{
-        'background-image': 'url' + '(' + BASIC_INFO?.bannerImage?.URL + ')'
+        'background-image': 'url' + '(' + (BASIC_INFO?.bannerImage?.URL || 'assets/images/menu/logo.gif') + ')'
       }"
     ></div>
     <button
@@ -23,7 +23,7 @@
   <div class="container-fluid m-0 px-3 px-md-3">
     <div class="container-fluid merchant__header p-0 row">
       <img
-        [src]="BASIC_INFO?.logoImage?.URL"
+        [src]="isValidImage(BASIC_INFO?.logoImage?.URL) ? BASIC_INFO?.logoImage?.URL : 'assets/images/menu/logo.gif'"
         class="merchant__logo me-md-4 p-0 col-4 col-sm-3 col-md-4 col-lg-3 col-xl-3 img-fluid rounded-circle border"
         alt="Logo Merchant"
       />
@@ -31,7 +31,12 @@
       <div
         class="merchant__minimal-info align-items-center m-auto p-0 col-8 col-sm-9 col-md-4 col-lg-5 col-xl-5"
       >
-        <h6>{{ BASIC_INFO?.name }}</h6>
+        <h6 class="merchant__sub-title">
+          Name:
+          <span class="sub-title__content">
+            {{ BASIC_INFO?.name }}
+          </span>
+        </h6>
         <h6 class="merchant__sub-title">
           Description:
           <span class="sub-title__content">
@@ -48,7 +53,7 @@
               "
             >
               {{ category }}
-              <ng-container *ngIf="indexCategory >= 0"> , </ng-container>
+              <ng-container *ngIf="indexCategory >= 0"> | </ng-container>
             </ng-container>
           </span>
         </h6>

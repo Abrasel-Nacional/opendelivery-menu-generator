@@ -29,8 +29,7 @@ export class ItemOfferDetailsComponent implements OnInit {
   public readonly ITEM_OFFER?: IItemOffer = this.merchantService.getItemOfferById(this.itemOfferId)
   public readonly ITEM?: IItem = this.merchantService.getItemById(this.ITEM_OFFER?.itemId)
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   closeItemOfferDetails() {
     this.dialogRef.close()
@@ -51,4 +50,7 @@ export class ItemOfferDetailsComponent implements OnInit {
     return contentToVerify
   }
 
+  isValidImage(url: string | undefined | null): boolean {
+    return url != null && url !== '' && url !== 'N/A';
+  }
 }

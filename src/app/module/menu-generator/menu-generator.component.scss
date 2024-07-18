@@ -1,5 +1,8 @@
 @use "src/assets/scss/colors" as *;
 
+$green-color: #0d6366; /* Cor verde para o botão */
+$dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
+
 #container {
   font-size: 1rem;
   padding: 3rem 3rem;
@@ -15,20 +18,19 @@
   .form-examples {
     line-height: 1.55;
     max-width: 25rem;
-
     margin-bottom: 1rem;
+    display: flex;
   }
 
   .btn-validate {
     align-self: flex-end;
-    background-color: #0d6366;
+    background-color: $green-color;
     color: white;
-
     width: 8rem;
     padding: .1rem;
 
     &:disabled {
-      background-color: rgba($color: #0d6366, $alpha: 0.3);
+      background-color: rgba($green-color, 0.3);
     }
   }
 
@@ -41,7 +43,7 @@
   .invalid {
     padding: 1rem 0;
     color: red;
-    border: 1px solid $light-grey;
+    border: 1px solid #d3d3d3;
 
     span {
       color: black;
@@ -67,6 +69,79 @@
 
     span {
       font-weight: bold;
+    }
+  }
+
+  .radio-label {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .radio-option-disabled {
+    font-weight: lighter;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .example-section, .url-section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .menu-url-container {
+    display: flex;
+    align-items: center;
+
+    .half-width {
+      flex: 1;
+      margin-right: 1rem;
+      max-width: 50%;
+    }
+
+    button {
+      background-color: $dark-yellow;
+      color: $green-color;
+      align-self: flex-start; /* Alinha o botão ao topo do input */
+      height: 40px; /* Remove a altura fixa do botão */
+      margin-top: 0.3rem; /* Ajusta o padding para manter um tamanho adequado */
+
+      &:hover {
+        background-color: darken($dark-yellow, 10%);
+      }
+
+      &:disabled {
+        background-color: rgba($dark-yellow, 0.3);
+      }
+    }
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  
+    .loading-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .loading-text {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      color: #333;
     }
   }
 }

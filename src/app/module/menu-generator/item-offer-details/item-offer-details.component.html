@@ -1,35 +1,43 @@
 <main class="item-offer">
-  <header
-    class="item-offer__header d-flex justify-content-between align-items-center"
-  >
+  <header class="item-offer__header d-flex justify-content-between align-items-center">
     <p class="item-offer__title p-0 m-0">itemOfferId: {{ ITEM_OFFER?.id }}</p>
-    <img
-      class="icon"
-      [src]="ICONS.close.src"
-      [alt]="ICONS.close.alt"
-      (click)="closeItemOfferDetails()"
-    />
+    <img class="icon" [src]="ICONS.close.src" [alt]="ICONS.close.alt" (click)="closeItemOfferDetails()" />
   </header>
 
   <section class="item-offer__content d-flex flex-column">
-    <img
-      class="item-offer__image img-fluid"
-      [src]="ITEM?.image?.URL"
-      alt="Item Offer image"
+    <img 
+      *ngIf="isValidImage(ITEM?.image?.URL)"
+      class="item-offer__image img-fluid" 
+      [src]="ITEM?.image?.URL" 
+      alt="Item Offer image" 
     />
 
-    <div
-      class="item-offer__title d-flex flex-column justify-content-center text-center mt-3"
-    >
+    <div class="item-offer__title d-flex flex-column justify-content-center text-center mt-3">
       <h6 class="">
         {{ ITEM?.name }}
       </h6>
       <p class="item-offer__id">itemId: {{ ITEM?.id }}</p>
     </div>
 
-    <p class="text-justify">
+    <p class="text-center">
       {{ ITEM?.description }}
     </p>
+    <div class="item-offer__nutritional-info mt-2">
+      <ul class="nutritional-list">
+        <li class="nutritional-item">
+          <span class="title"> External Code: </span>
+          {{ verifyExistsContent(ITEM?.externalCode) }}
+        </li>
+        <li class="nutritional-item">
+          <span class="title"> UNIT: </span>
+          {{ verifyExistsContent(ITEM?.unit) }}
+        </li>
+        <li class="nutritional-item">
+          <span class="title"> EAN: </span>
+          {{ verifyExistsContent(ITEM?.ean) }}
+        </li>
+      </ul>
+    </div>
     <hr class="m-0 mb-2" />
     <div class="item-offer__nutritional-info">
       <h6 class="title">Nutricional info</h6>
@@ -46,9 +54,7 @@
         <li class="nutritional-item">
           <span class="title"> Allergen: </span>
           <ng-container *ngIf="ITEM?.nutritionalInfo?.allergen; else notExist">
-            <ng-container
-              *ngFor="let allergen of ITEM?.nutritionalInfo?.allergen"
-            >
+            <ng-container *ngFor="let allergen of ITEM?.nutritionalInfo?.allergen">
               {{ allergen }}
             </ng-container>
           </ng-container>
@@ -59,9 +65,7 @@
         <li class="nutritional-item">
           <span class="title"> Additives: </span>
           <ng-container *ngIf="ITEM?.nutritionalInfo?.additives; else notExist">
-            <ng-container
-              *ngFor="let additive of ITEM?.nutritionalInfo?.additives"
-            >
+            <ng-container *ngFor="let additive of ITEM?.nutritionalInfo?.additives">
               {{ additive }}
             </ng-container>
           </ng-container>
@@ -72,12 +76,8 @@
 
         <li class="nutritional-item">
           <span class="title"> Suitable Diet: </span>
-          <ng-container
-            *ngIf="ITEM?.nutritionalInfo?.suitableDiet; else notExist"
-          >
-            <ng-container
-              *ngFor="let diet of ITEM?.nutritionalInfo?.suitableDiet"
-            >
+          <ng-container *ngIf="ITEM?.nutritionalInfo?.suitableDiet; else notExist">
+            <ng-container *ngFor="let diet of ITEM?.nutritionalInfo?.suitableDiet">
               {{ diet }},
             </ng-container>
           </ng-container>
@@ -90,22 +90,11 @@
           <span class="title"> Is Alcoholic: </span>
           {{ verifyExistsContent(ITEM?.nutritionalInfo?.isAlcoholic) }}
         </li>
-        <li class="nutritional-item">
-          <span class="title"> Unit: </span>
-          {{ verifyExistsContent(ITEM?.unit) }}
-        </li>
-        <li class="nutritional-item">
-          <span class="title"> Ean: </span>
-          {{ verifyExistsContent(ITEM?.ean) }}
-        </li>
       </ul>
       <hr class="m-0" />
     </div>
 
-    <div
-      class="item-offer__options"
-      *ngFor="let optionGroupId of ITEM_OFFER?.optionGroupsId"
-    >
+    <div class="item-offer__options" *ngFor="let optionGroupId of ITEM_OFFER?.optionGroupsId">
       <div class="option-group my-3">
         <div class="option-group__details">
           <h6 class="title">{{ getOptionGroupById(optionGroupId)?.name }}:</h6>
@@ -116,26 +105,20 @@
           </span>
         </div>
 
-        <div
-          class="option-group__option my-3"
-          *ngFor="let option of getOptionGroupById(optionGroupId)?.options"
-        >
+        <div class="option-group__option my-3" *ngFor="let option of getOptionGroupById(optionGroupId)?.options">
           <div class="option__header mb-1">
             <div>
-              <img
-                class="cicle-img"
-                src="assets/images/icons/black-circle.png"
-              />
+              <img class="cicle-img" src="assets/images/icons/black-circle.png" />
               <span class="option-name pl-2">{{
                 getItemById(option?.itemId)?.name
-              }}</span>
+                }}</span>
               <span class="option-max_permitted">
                 - Max Permitted: {{ option?.maxPermitted }}
               </span>
             </div>
             <span class="option-value">{{
               option?.price?.value | currency : DEFAULT_CURRENCY_PIPE
-            }}</span>
+              }}</span>
           </div>
 
           <p class="option__description">

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { IBasicInfo } from '../../models/basic-info';
@@ -10,14 +10,17 @@ import { MerchantService } from '../../service/merchant.service';
   templateUrl: './merchant-basic-info.component.html',
   styleUrls: ['./merchant-basic-info.component.scss']
 })
-export class MerchantBasicInfoComponent implements OnInit {
+export class MerchantBasicInfoComponent implements OnInit, OnDestroy {
 
   constructor(private merchantService: MerchantService, private router: Router) { }
 
   serviceSubscribe: Subscription = new Subscription();
 
   public serviceActive?: IService;
+
   ngOnInit(): void {
+    window.scrollTo(0, 0); // Adicionado para rolar para o topo
+    
     this.serviceSubscribe = this.merchantService.eventServiceActive.subscribe({
       next: (serviceType: string) => {
         console.log(serviceType)
@@ -77,10 +80,13 @@ export class MerchantBasicInfoComponent implements OnInit {
   public readonly BASIC_INFO?: IBasicInfo = this.merchantService.getBasicInfo
   private readonly SERVICES?: IService[] = this.merchantService.getServices
 
-
-  address: string = `${this.BASIC_INFO?.address?.street},${this.BASIC_INFO?.address?.number} - ${this.BASIC_INFO?.address?.district},${this.BASIC_INFO?.address?.state}, CEP: ${this.BASIC_INFO?.address?.postalCode}`
+  address: string = `${this.BASIC_INFO?.address?.street},${this.BASIC_INFO?.address?.number} - ${this.BASIC_INFO?.address?.city},${this.BASIC_INFO?.address?.state}, CEP: ${this.BASIC_INFO?.address?.postalCode}`
 
   navigateToRoot() {
     this.router.navigateByUrl(this.ROOT_PATH)
+  }
+
+  isValidImage(url: string | undefined | null): boolean {
+    return url != null && url !== '' && url !== 'N/A';
   }
 }

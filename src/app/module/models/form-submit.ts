@@ -1,6 +1,8 @@
-import { FormControl } from "@angular/forms";
+import { FormControl } from '@angular/forms';
 
 export interface IFormSubmit {
-    example: FormControl
-    json: FormControl
+  json: FormControl<string | null>;
+  example: FormControl<string | null>;
+  menuURL: FormControl<string | null>;
+  selectedOption: FormControl<string | null>;
 }

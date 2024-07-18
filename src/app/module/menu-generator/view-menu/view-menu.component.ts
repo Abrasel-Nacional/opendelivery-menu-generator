@@ -12,6 +12,7 @@ export class ViewMenuComponent implements OnInit {
   constructor(private merchantService: MerchantService) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0); // Adicionado para rolar para o topo
   }
 
 }

@@ -1,5 +1,5 @@
-import * as _pizzaExampleEn from './examples/pizzaExample_en.json';
-import * as _pizzaExamplePt from './examples/pizzaExample_pt.json';
+import pizzaExampleEn from './examples/pizzaExample_en.json';
+import pizzaExamplePt from './examples/pizzaExample_pt.json';
 import { IResource } from '../module/models/example';
 import { ExamplesEnum } from './example-id';
 
@@ -8,12 +8,12 @@ export const resource: IResource = {
     {
       name: 'Pizza Sample (English)',
       id: ExamplesEnum.Pizza_EN,
-      text: JSON.stringify(_pizzaExampleEn),
+      text: JSON.stringify(pizzaExampleEn),
     },
     {
       name: 'Pizza Sample (Português)',
       id: ExamplesEnum.Pizza_PT,
-      text: JSON.stringify(_pizzaExamplePt),
+      text: JSON.stringify(pizzaExamplePt),
     },
   ],
 };

@@ -15,7 +15,6 @@ export class MenuComponent implements OnInit {
 
   constructor(private merchantService: MerchantService, private dialog: MatDialog) { }
 
-
   ngOnInit(): void {
     this.setMenuActiveByServiceType(this.TYPE_DELIVERY)
   }
@@ -78,4 +77,3 @@ export class MenuComponent implements OnInit {
   }
 
 }
-
