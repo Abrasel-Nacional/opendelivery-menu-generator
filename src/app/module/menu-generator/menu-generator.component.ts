@@ -206,7 +206,7 @@ export class MenuGeneratorComponent implements OnInit
       this.loading = true;
       try
       {
-        const response = await firstValueFrom(this.http.post<{ json: string }>('http://18.235.58.150:5000/api/v1/generate-json-from-image', formData));
+        const response = await firstValueFrom(this.http.post<{ json: string }>('https://api.opendelivery.com.br/od/menu-generator/v1/generate-json-from-image', formData));
         if (response && response.json)
         {
           if (response.json == this.IMAGE_INVALID_MESSAGE)
@@ -239,7 +239,7 @@ export class MenuGeneratorComponent implements OnInit
 
       try
       {
-        const response = await firstValueFrom(this.http.post<{ json: string }>('http://18.235.58.150:5000/api/v1/generate-json-from-url', { menuURL }));
+        const response = await firstValueFrom(this.http.post<{ json: string }>('https://api.opendelivery.com.br/od/menu-generator/v1/generate-json-from-url', { menuURL }));
         if (response && response.json)
         {
           if (response.json == this.IMAGE_INVALID_MESSAGE)
