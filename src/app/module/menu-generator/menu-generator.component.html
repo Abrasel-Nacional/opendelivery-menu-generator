@@ -1,21 +1,30 @@
 <div id="container">
   <h2 id="about-the-project">Sobre o Projeto</h2>
-  <p class="usage-text"><span>Open Delivery - Gerador de Menu</span> é uma ferramenta que fornece uma visualização gráfica de um MERCHANT seguindo o <a href="https://abrasel-nacional.github.io/docs/#tag/merchantStructure">Merchant Schema</a> do padrão <a href="https://abrasel-nacional.github.io/docs/">Open Delivery</a>.</p>
+  <p class="usage-text"><span>Open Delivery - Gerador de Menu</span> é uma ferramenta que fornece uma visualização
+    gráfica de um MERCHANT seguindo o <a href="https://abrasel-nacional.github.io/docs/#tag/merchantStructure">Merchant
+      Schema</a> do padrão <a href="https://abrasel-nacional.github.io/docs/">Open Delivery</a>.</p>
   <h2>Uso:</h2>
   <p class="usage-text">
-    O sistema <b>Open Delivery - Gerador de Menu</b> oferece três maneiras distintas para você gerar o JSON do seu menu conforme o padrão <b>Open Delivery</b>:
+    O sistema <b>Open Delivery - Gerador de Menu</b> oferece três maneiras distintas para você gerar o JSON do seu menu
+    conforme o padrão <b>Open Delivery</b>:
     <br><br>
-    <b>1. Usar o próprio Schema:</b> 
+    <b>1. Usar o próprio Schema:</b>
     <br>
-    Nesta opção, você pode copiar diretamente o seu JSON schema de Merchant seguindo a especificação do padrão Open Delivery e colá-lo na área de texto fornecida. Certifique-se de que seu JSON esteja completo e siga o esquema corretamente para evitar erros.
+    Nesta opção, você pode copiar diretamente o seu JSON schema de Merchant seguindo a especificação do padrão Open
+    Delivery e colá-lo na área de texto fornecida. Certifique-se de que seu JSON esteja completo e siga o esquema
+    corretamente para evitar erros.
     <br><br>
     <b>2. Utilizar um Exemplo:</b>
     <br>
-    Para facilitar a visualização e compreensão do formato, você pode escolher entre alguns exemplos pré-definidos. Basta selecionar um exemplo da lista e o JSON correspondente será automaticamente carregado na área de texto. Essa opção é ideal para entender a estrutura esperada e para testes rápidos.
+    Para facilitar a visualização e compreensão do formato, você pode escolher entre alguns exemplos pré-definidos.
+    Basta selecionar um exemplo da lista e o JSON correspondente será automaticamente carregado na área de texto. Essa
+    opção é ideal para entender a estrutura esperada e para testes rápidos.
     <br><br>
-    <b>3. Usar imagem do Cardápio: EM BREVE</b>
+    <b>3. Usar imagem do Cardápio</b>
     <br>
-    Se você possui o link direto para uma imagem do seu menu, selecione esta opção e insira a URL. O sistema usará inteligência artificial (IA) para analisar a imagem e gerar automaticamente o JSON correspondente ao menu. Este processo pode demorar alguns instantes, então aguarde enquanto a IA trabalha.
+    Se você deseja gerar o JSON a partir de uma imagem do seu menu (ou do link para a imagem), selecione esta opção. O sistema usará
+    inteligência artificial generativa (IA) para analisar a imagem e gerar automaticamente o JSON correspondente ao menu. Este
+    processo pode demorar alguns instantes, então aguarde enquanto a IA trabalha. Lembrando que a ideia aqui é apenas fornecer um ponto de partida para a criação do seu JSON, então sempre revise o resultado final e faça as correções necessárias.
 
   </p>
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -23,14 +32,16 @@
     <mat-radio-group formControlName="selectedOption" class="radio-group">
       <mat-radio-button value="useSchema" class="radio-option">Gerar com o próprio schema</mat-radio-button>
       <mat-radio-button value="useExample" class="radio-option">Gerar utilizando um exemplo</mat-radio-button>
-      <mat-radio-button value="useURL" class="radio-option-disabled" [disabled]="true"> (EM BREVE) Gerar com imagem do seu Cardápio ✨</mat-radio-button>
+      <mat-radio-button value="useImage" class="radio-option">Gerar com imagem do seu Cardápio
+        ✨</mat-radio-button>
     </mat-radio-group>
 
     <div *ngIf="formControls.selectedOption.value === 'useExample'" class="example-section">
       <span>{{EXAMPLE_LABEL}}</span>
       <mat-form-field class="form-examples" appearance="outline">
         <mat-label>Escolha um exemplo:</mat-label>
-        <mat-select formControlName="example" id="example" (selectionChange)="onExampleSelect($event)" [disabled]="loading">
+        <mat-select formControlName="example" id="example" (selectionChange)="onExampleSelect($event)"
+          [disabled]="loading">
           <mat-option *ngFor="let example of getExamples" [value]="example.name">
             <span> {{example.name}} </span>
           </mat-option>
@@ -38,22 +49,56 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="formControls.selectedOption.value === 'useURL'" class="url-section">
-      <span>{{URL_LABEL}}</span>
-      <div class="menu-url-container">
-        <mat-form-field appearance="outline" class="half-width">
-          <input formControlName="menuURL" matInput id="menuURL" placeholder="http://example.com/menu.jpg" [disabled]="loading">
-        </mat-form-field>
-        <button mat-raised-button type="button" (click)="generateJson()" [disabled]="loading">Gerar JSON</button>
+    <div *ngIf="formControls.selectedOption.value === 'useImage'" class="url-section">
+      <p class="warning-text" style="color: red; font-size: small; margin: 0.5;">
+        Importante: A geração do cardápio por imagem utiliza APIs de modelos de IA Generativa externos. <br />
+        Portanto, o resultado pode não ser 100% perfeito e poderá conter erros. Recomendamos sempre revisar o JSON gerado e fazer as correções necessárias. <br />
+        As imagens fornecidas serão enviadas para o serviço de IA, podendo serem utilizadas para treinamento de modelos.
+      </p>
+      <mat-form-field appearance="outline">
+        <mat-label>Opções de Imagem</mat-label>
+        <mat-select formControlName="imageOption" (selectionChange)="onImageOptionSelect($event.value)">
+          <mat-option value="uploadImage">Subir imagem</mat-option>
+          <mat-option value="insertURL">Inserir URL da imagem</mat-option>
+        </mat-select>
+      </mat-form-field>
+        <div *ngIf="formControls.imageOption.value === 'uploadImage'" class="url-section">
+          <div class="menu-url-container">
+            <input type="file" class="file-input" accept=".jpg, .jpeg, .gif, .png, .webp" (change)="onFileSelected($event)" #fileUpload>
+
+            <div class="file-upload">
+              <button mat-mini-fab class="upload-btn" (click)="fileUpload.click(); $event.preventDefault()">
+                <mat-icon>attach_file</mat-icon>
+              </button>
+              <span class="file-input-label">
+                {{fileName || NO_FILE_TEXT}}
+              </span>
+            </div>
+
+            <button mat-raised-button type="button" (click)="generateJson()" [disabled]="!isImageSelected || loading">Gerar JSON</button>
+          </div>
+        </div>
+
+        <div *ngIf="formControls.imageOption.value === 'insertURL'" class="url-section">
+          <span>{{URL_LABEL}}</span>
+          <div class="menu-url-container">
+            <mat-form-field appearance="outline" class="half-width">
+              <input formControlName="menuURL" matInput id="menuURL" placeholder="http://example.com/menu.jpg" [disabled]="loading" (input)="onMenuURLChange($event)">
+            </mat-form-field>
+            <button mat-raised-button type="button" (click)="generateJson()" [disabled]="!isImageSelected || loading">Gerar JSON</button>
+          </div>
+        </div>
       </div>
-    </div>
 
     <span *ngIf="formControls.selectedOption.value === 'useSchema'">{{FORM_LABEL}}</span>
+
     <mat-form-field appearance="outline" class="full-width">
-      <textarea formControlName="json" matInput id="json" cols="50" rows="15" [disabled]="!isJsonEnabled || loading"></textarea>
+      <textarea formControlName="json" matInput id="json" cols="50" rows="15"
+        [disabled]="!isJsonEnabled || loading"></textarea>
     </mat-form-field>
-    
-    <button [disabled]="!isFormValid || loading" class="btn-validate" type="submit" mat-raised-button>{{BUTTON_GENERATE_MENU}}</button>
+
+    <button [disabled]="!isFormValid || loading" class="btn-validate" type="submit"
+      mat-raised-button>{{BUTTON_GENERATE_MENU}}</button>
   </form>
 
   <div class="mt-3" *ngIf="showError">

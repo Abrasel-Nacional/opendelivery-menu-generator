@@ -5,4 +5,6 @@ export interface IFormSubmit {
   example: FormControl<string | null>;
   menuURL: FormControl<string | null>;
   selectedOption: FormControl<string | null>;
+  imageOption: FormControl<string | null>;
+  selectedFile: FormControl<File | null>;
 }

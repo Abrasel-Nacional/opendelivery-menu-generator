@@ -1,7 +1,9 @@
 @use "src/assets/scss/colors" as *;
 
-$green-color: #0d6366; /* Cor verde para o botão */
-$dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
+$green-color: #0d6366;
+/* Cor verde para o botão */
+$dark-yellow: #FFD700;
+/* Cor amarela para o botão Gerar JSON */
 
 #container {
   font-size: 1rem;
@@ -72,6 +74,11 @@ $dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
     }
   }
 
+  .radio-group
+  {
+    margin-bottom: 0rem;
+  }
+
   .radio-label {
     font-weight: bold;
     margin-bottom: 1rem;
@@ -84,9 +91,10 @@ $dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
     display: block;
   }
 
-  .example-section, .url-section {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  .example-section,
+  .url-section {
+    margin-top: 0;
+    margin-bottom: 1;
   }
 
   .menu-url-container {
@@ -99,19 +107,60 @@ $dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
       max-width: 50%;
     }
 
+    .file-input {
+      display: none;
+    }
+
+    .file-upload {
+      margin-right: 1rem;
+      margin-bottom: 1.5rem;
+
+      .file-input-label {
+        align-items: normal;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+        border: 1px solid #d3d3d3;
+        align-self: flex-start;
+        /* Alinha o botão ao topo do input */
+        height: 40px;
+        /* Remove a altura fixa do botão */
+        margin-top: 0.3rem;
+        /* Ajusta o padding para manter um tamanho adequado */
+      }
+
+      .upload-btn {
+        background-color: $green-color;
+        color: $dark-yellow;
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+        margin-right: 0.5rem;
+        cursor: pointer;
+
+        &:hover {
+          background-color: darken($green-color, 30%);
+        }
+      }
+    }
+
+
     button {
       background-color: $dark-yellow;
       color: $green-color;
-      align-self: flex-start; /* Alinha o botão ao topo do input */
-      height: 40px; /* Remove a altura fixa do botão */
-      margin-top: 0.3rem; /* Ajusta o padding para manter um tamanho adequado */
+      align-self: flex-start;
+      /* Alinha o botão ao topo do input */
+      height: 40px;
+      /* Remove a altura fixa do botão */
+      margin-top: 0.3rem;
+      /* Ajusta o padding para manter um tamanho adequado */
 
       &:hover {
         background-color: darken($dark-yellow, 10%);
       }
 
       &:disabled {
-        background-color: rgba($dark-yellow, 0.3);
+        background-color: rgba($dark-yellow, 0.2);
+        color: rgba($green-color, 0.2);
       }
     }
   }
@@ -131,13 +180,13 @@ $dark-yellow: #FFD700; /* Cor amarela para o botão Gerar JSON */
     align-items: center;
     justify-content: center;
     z-index: 9999;
-  
+
     .loading-content {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
-  
+
     .loading-text {
       margin-top: 1rem;
       font-size: 1.2rem;
