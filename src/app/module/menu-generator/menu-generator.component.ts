@@ -7,6 +7,7 @@ import { IFormSubmit } from '../models/form-submit';
 import { IMerchant } from '../models/merchant';
 import { IExample } from '../models/example';
 import { MerchantService } from '../service/merchant.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-menu-generator',
@@ -206,20 +207,22 @@ export class MenuGeneratorComponent implements OnInit
       this.loading = true;
       try
       {
-        const response = await firstValueFrom(this.http.post<{ json: string }>('https://api.opendelivery.com.br/od/menu-generator/v1/generate-json-from-image', formData));
+        const apiURL = environment.apiURL + '/generate-json-from-image';
+        const headers = { 'app': `${environment.apiKey}` };
+        const response = await firstValueFrom(this.http.post<{ json: string }>(apiURL, formData, { headers }));
         if (response && response.json)
         {
           if (response.json == this.IMAGE_INVALID_MESSAGE)
-            {
-              this.setExampleText("Não foi possível gerar o JSON a partir da imagem fornecida. Verifique se: \n- A imagem está legível; \n- A imagem contém um menu de restaurante; \n- A imagem não está corrompida. \n- Caso o menu seja muito grande, recomenda-se dividir a imagem em partes menores.");
-              this.checkJsonValidity(); // Verifica a validade do JSON após receber a resposta
-            }
-            else
-            {
-              window.scrollTo(0, document.body.scrollHeight); // Adicionado para rolar para o fim da página
-              this.setExampleText(response.json);
-              this.checkJsonValidity(); // Verifica a validade do JSON após receber a resposta
-            }
+          {
+            this.setExampleText("Não foi possível gerar o JSON a partir da imagem fornecida. Verifique se: \n- A imagem está legível; \n- A imagem contém um menu de restaurante; \n- A imagem não está corrompida. \n- Caso o menu seja muito grande, recomenda-se dividir a imagem em partes menores.");
+            this.checkJsonValidity(); // Verifica a validade do JSON após receber a resposta
+          }
+          else
+          {
+            window.scrollTo(0, document.body.scrollHeight); // Adicionado para rolar para o fim da página
+            this.setExampleText(response.json);
+            this.checkJsonValidity(); // Verifica a validade do JSON após receber a resposta
+          }
         } else
         {
           this.setExampleText("Não foi possível gerar o JSON a partir da imagem fornecida. Verifique se: \n- A imagem está legível; \n- A imagem contém um menu de restaurante; \n- A imagem não está corrompida. \n- Caso o menu seja muito grande, recomenda-se dividir a imagem em partes menores.");
@@ -239,7 +242,9 @@ export class MenuGeneratorComponent implements OnInit
 
       try
       {
-        const response = await firstValueFrom(this.http.post<{ json: string }>('https://api.opendelivery.com.br/od/menu-generator/v1/generate-json-from-url', { menuURL }));
+        const apiURL = environment.apiURL + '/generate-json-from-url';
+        const headers = { 'app': `${environment.apiKey}` };
+        const response = await firstValueFrom(this.http.post<{ json: string }>(apiURL, { menuURL }, { headers }));
         if (response && response.json)
         {
           if (response.json == this.IMAGE_INVALID_MESSAGE)
