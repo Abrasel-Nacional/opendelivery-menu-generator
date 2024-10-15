@@ -1,4 +1,3 @@
 node_modules
 .angular
-src/environments/environment.prod.ts
-src/environments/environment.ts
+dist
