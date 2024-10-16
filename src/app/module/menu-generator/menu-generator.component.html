@@ -22,9 +22,13 @@
     <br><br>
     <b>3. Usar imagem do Cardápio</b>
     <br>
-    Se você deseja gerar o JSON a partir de uma imagem do seu menu (ou do link para a imagem), selecione esta opção. O sistema usará
-    inteligência artificial generativa (IA) para analisar a imagem e gerar automaticamente o JSON correspondente ao menu. Este
-    processo pode demorar alguns instantes, então aguarde enquanto a IA trabalha. Lembrando que a ideia aqui é apenas fornecer um ponto de partida para a criação do seu JSON, então sempre revise o resultado final e faça as correções necessárias.
+    Se você deseja gerar o JSON a partir de uma imagem do seu menu (ou do link para a imagem), selecione esta opção. O
+    sistema usará
+    inteligência artificial generativa (IA) para analisar a imagem e gerar automaticamente o JSON correspondente ao
+    menu. Este
+    processo pode demorar alguns instantes, então aguarde enquanto a IA trabalha. Lembrando que a ideia aqui é apenas
+    fornecer um ponto de partida para a criação do seu JSON, então sempre revise o resultado final e faça as correções
+    necessárias.
 
   </p>
   <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -52,7 +56,8 @@
     <div *ngIf="formControls.selectedOption.value === 'useImage'" class="url-section">
       <p class="warning-text" style="color: red; font-size: small; margin: 0.5;">
         Importante: A geração do cardápio por imagem utiliza APIs de modelos de IA Generativa externos. <br />
-        Portanto, o resultado pode não ser 100% perfeito e poderá conter erros. Recomendamos sempre revisar o JSON gerado e fazer as correções necessárias. <br />
+        Portanto, o resultado pode não ser 100% perfeito e poderá conter erros. Recomendamos sempre revisar o JSON
+        gerado e fazer as correções necessárias. <br />
         As imagens fornecidas serão enviadas para o serviço de IA, podendo serem utilizadas para treinamento de modelos.
       </p>
       <mat-form-field appearance="outline">
@@ -62,33 +67,37 @@
           <mat-option value="insertURL">Inserir URL da imagem</mat-option>
         </mat-select>
       </mat-form-field>
-        <div *ngIf="formControls.imageOption.value === 'uploadImage'" class="url-section">
-          <div class="menu-url-container">
-            <input type="file" class="file-input" accept=".jpg, .jpeg, .gif, .png, .webp" (change)="onFileSelected($event)" #fileUpload>
+      <div *ngIf="formControls.imageOption.value === 'uploadImage'" class="url-section">
+        <div class="menu-url-container">
+          <input type="file" class="file-input" accept=".jpg, .jpeg, .gif, .png, .webp"
+            (change)="onFileSelected($event)" #fileUpload>
 
-            <div class="file-upload">
-              <button mat-mini-fab class="upload-btn" (click)="fileUpload.click(); $event.preventDefault()">
-                <mat-icon>attach_file</mat-icon>
-              </button>
-              <span class="file-input-label">
-                {{fileName || NO_FILE_TEXT}}
-              </span>
-            </div>
-
-            <button mat-raised-button type="button" (click)="generateJson()" [disabled]="!isImageSelected || loading">Gerar JSON</button>
+          <div class="file-upload">
+            <button mat-mini-fab class="upload-btn" (click)="fileUpload.click(); $event.preventDefault()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <span class="file-input-label">
+              {{fileName || NO_FILE_TEXT}}
+            </span>
           </div>
-        </div>
 
-        <div *ngIf="formControls.imageOption.value === 'insertURL'" class="url-section">
-          <span>{{URL_LABEL}}</span>
-          <div class="menu-url-container">
-            <mat-form-field appearance="outline" class="half-width">
-              <input formControlName="menuURL" matInput id="menuURL" placeholder="http://example.com/menu.jpg" [disabled]="loading" (input)="onMenuURLChange($event)">
-            </mat-form-field>
-            <button mat-raised-button type="button" (click)="generateJson()" [disabled]="!isImageSelected || loading">Gerar JSON</button>
-          </div>
+          <button mat-raised-button type="button" (click)="generateJson()"
+            [disabled]="!isImageSelected || loading">Gerar JSON</button>
         </div>
       </div>
+
+      <div *ngIf="formControls.imageOption.value === 'insertURL'" class="url-section">
+        <span>{{URL_LABEL}}</span>
+        <div class="menu-url-container">
+          <mat-form-field appearance="outline" class="half-width">
+            <input formControlName="menuURL" matInput id="menuURL" placeholder="http://example.com/menu.jpg"
+              [disabled]="loading" (input)="onMenuURLChange($event)">
+          </mat-form-field>
+          <button mat-raised-button type="button" (click)="generateJson()"
+            [disabled]="!isImageSelected || loading">Gerar JSON</button>
+        </div>
+      </div>
+    </div>
 
     <span *ngIf="formControls.selectedOption.value === 'useSchema'">{{FORM_LABEL}}</span>
 
@@ -97,7 +106,10 @@
         [disabled]="!isJsonEnabled || loading"></textarea>
     </mat-form-field>
 
-    <button [disabled]="!isFormValid || loading" class="btn-validate" type="submit"
+    <mat-checkbox formControlName="acceptTerms" class="terms-checkbox">
+      Eu li e aceito os <a href="javascript:void(0)" (click)="openTermsDialog()">termos e condições</a>.
+    </mat-checkbox>
+    <button [disabled]="!isFormValid || !formControls.acceptTerms.value || loading" class="btn-validate" type="submit"
       mat-raised-button>{{BUTTON_GENERATE_MENU}}</button>
   </form>
 
@@ -109,6 +121,136 @@
       </div>
     </div>
   </div>
+
+  <ng-template #termsDialog>
+    <mat-dialog-content>
+      <h1 style="text-align: center;">DISCLAIMER</h1>
+      <h2 style="text-align: center;">PRIVACIDADE E CONDI&Ccedil;&Otilde;ES DE USO DA FERRAMENTA DE GERA&Ccedil;&Atilde;O DE CARD&Aacute;PIOS DO OPEN DELIVERY</h2>
+      <p><br /></p>
+      <p>1. A <strong><strong>ferramenta de card&aacute;pio</strong></strong> do portal do desenvolvedor do Open Delivery (&ldquo;ferramenta de
+        card&aacute;pio&rdquo;) &eacute; disponibilizada pela <u>Abrasel</u> no &acirc;mbito da iniciativa Open Delivery, a
+        qual n&atilde;o tem fins lucrativos e visa reduzir barreiras tecnol&oacute;gicas para integra&ccedil;&atilde;o e
+        concorr&ecirc;ncia no ecossistema de delivery de comida e bebida no pa&iacute;s.</p>
+      <p>2. A <strong>ferramenta de card&aacute;pio</strong> permite aos interessados nos protocolos do Open Delivery o desenvolvimento
+        simples e autom&aacute;tico do card&aacute;pio do estabelecimento comercial (bares, restaurantes, lanchonetes,
+        etc. &ndash; &ldquo;merchant&rdquo;) no formato estabelecido nos protocolos do Open Delivery.</p>
+      <p>3. A <strong>ferramenta de card&aacute;pio</strong> &eacute; apenas uma solu&ccedil;&atilde;o tecnol&oacute;gica para replicar o
+        card&aacute;pio no protocolo do Open Delivery atrav&eacute;s de solu&ccedil;&otilde;es com a
+        utiliza&ccedil;&atilde;o de Intelig&ecirc;ncia Artificial, de modo que n&atilde;o gera ou altera os
+        conte&uacute;dos comerciais do merchant.</p>
+      <p>4. Para acesso e uso &agrave; <strong>ferramenta de card&aacute;pio</strong>, o <strong>Interessado Open Delivery</strong> deve realizar o upload da
+        imagem do card&aacute;pio do merchant ou informar a URL da imagem do card&aacute;pio do merchant ou copiar seu c&oacute;digo JSON, desde que previamente autorizado por esse e de maneira que as
+        informa&ccedil;&otilde;es estejam adequadamente vis&iacute;veis.</p>
+      <p>5. A <u>Abrasel</u> informa que para as funcionalidades de imagem, influ&ecirc;ncias de luz, sombras, ou da nitidez da imagem e do seu enquadramento podem
+        influenciar no uso da <strong>ferramenta de card&aacute;pio</strong>, prejudicando a qualidade do mesmo, raz&atilde;o pela qual a
+        <u>Abrasel</u> refor&ccedil;a que o upload da imagem do card&aacute;pio seja realizado de maneira zelosa e previamente
+        analisada.</p>
+      <p>6. Eventuais erros na gera&ccedil;&atilde;o do card&aacute;pio pela ferramenta se devem &agrave; qualidade da
+        imagem enviada ou &agrave; pr&oacute;pria ferramenta, n&atilde;o sendo de responsabilidade da <u>Abrasel</u> a
+        ocorr&ecirc;ncia de eventuais situa&ccedil;&otilde;es dessa natureza, raz&atilde;o pela qual a <u>Abrasel</u>
+        refor&ccedil;a seu pedido para que o upload da imagem do card&aacute;pio seja realizado de maneira zelosa e o
+        card&aacute;pio gerado seja atenciosamente analisado.</p>
+      <p>7. Ao acessar e utilizar a <strong>ferramenta de card&aacute;pio</strong>, voc&ecirc; (&ldquo;<strong>Interessado Open Delivery</strong>&rdquo;)
+        declara que leu, que &eacute; legalmente capaz, e que est&aacute; de acordo com o presente Disclaimer referente
+        ao referido acesso e uso.</p>
+      <p>8. Ao acessar e utilizar a <strong>ferramenta de card&aacute;pio</strong>, o &ldquo;<strong>Interessado Open Delivery</strong>&rdquo; &eacute; o
+        respons&aacute;vel pelas informa&ccedil;&otilde;es enviadas para o desenvolvimento do card&aacute;pio, bem como
+        pela autoriza&ccedil;&atilde;o para tanto, de maneira que a <u>Abrasel</u> refor&ccedil;a a sua posi&ccedil;&atilde;o
+        contr&aacute;ria &agrave; veicula&ccedil;&atilde;o sem autoriza&ccedil;&atilde;o do card&aacute;pio dos
+        merchants, alertando aqueles que realizarem o upload na ferramenta que somente o fa&ccedil;am caso sejam
+        previamente autorizados para tanto.</p>
+      <p>9. A <u>Abrasel</u> ser&aacute; respons&aacute;vel por armazenar as informa&ccedil;&otilde;es de cadastro e aquelas
+        necess&aacute;rias para replicar o card&aacute;pio no protocolo Open Delivery, o que ser&aacute; feito dentro de
+        um banco de dados interno. Apenas a <u>Abrasel</u>, incluindo seus colaboradores e prestadores de servi&ccedil;os,
+        poder&atilde;o ter acesso a essas informa&ccedil;&otilde;es, que s&atilde;o consideradas e tratadas com os
+        cuidados legais pela <u>Abrasel</u>.</p>
+      <p>10. N&atilde;o adicionaremos o seu endere&ccedil;o de e-mail, sua raz&atilde;o social, nome, e outros dados
+        &agrave;s nossas listas de distribui&ccedil;&atilde;o, exceto se previamente autorizado.</p>
+      <p>11. A <u>Abrasel</u> esclarece que, neste s&iacute;tio eletr&ocirc;nico e no acesso e uso da <strong>ferramenta de card&aacute;pio</strong>
+        do Open Delivery, n&atilde;o solicita nenhum dado considerado sens&iacute;vel pela Lei Geral de
+        Prote&ccedil;&atilde;o de Dados (&ldquo;LGPD&rdquo; ou Lei 13.709/2018), nem coleta nenhuma
+        informa&ccedil;&atilde;o de forma indireta, como por meio de arquivos ou pacotes de dados - cookies.</p>
+      <p>12. A <u>Abrasel</u> apenas solicita as informa&ccedil;&otilde;es necess&aacute;rias para que voc&ecirc;, Interessado Open
+        Delivery, possa desenvolver o card&aacute;pio do merchant no protocolo Open Delivery, desde que previamente
+        autorizado por esse.</p>
+      <p>13. Ao acessar e utilizar a <strong>ferramenta de card&aacute;pio</strong>, voc&ecirc; (<strong>Interessado Open Delivery</strong>) consente com o
+        fornecimento e utiliza&ccedil;&atilde;o pela <u>Abrasel</u> daqueles dados estritamente necess&aacute;rios para que a
+        <u>Abrasel</u> possa identific&aacute;-lo, entrar em contato para esclarecer suas d&uacute;vidas e/ou
+        atualiz&aacute;-lo a respeito do Open Delivery, bem como para desenvolver o card&aacute;pio do merchant no
+        protocolo Open Delivery. Nessa mesma ocasi&atilde;o, o <strong>Interessado Open Delivery</strong> declara ter conhecimento de que
+        eventualmente alguns desses dados podem ser de titularidade de pessoas naturais (&ldquo;dados pessoais&rdquo;).
+      </p>
+      <p>14. A utiliza&ccedil;&atilde;o desses dados, inclusive na hip&oacute;tese de dados pessoais, se limita &agrave;
+        coleta, recep&ccedil;&atilde;o, classifica&ccedil;&atilde;o, armazenamento e comunica&ccedil;&atilde;o.</p>
+      <p>15. A <u>Abrasel</u> esclarece que eventuais estudos e pesquisas resultantes da utiliza&ccedil;&atilde;o dos dados do
+        &ldquo;item 9.&rdquo; e do card&aacute;pio do merchant decorrer&atilde;o da an&aacute;lise dos dados de maneira
+        an&ocirc;nima, ou seja, de forma que os titulares n&atilde;o possam ser identificados.</p>
+      <p>16. A <u>Abrasel</u> dedicar&aacute; os melhores esfor&ccedil;os para garantir todas as medidas de seguran&ccedil;a
+        t&eacute;cnicas e administrativas aptas a proteger todos os dados, inclusive na hip&oacute;tese de dados
+        pessoais, de situa&ccedil;&otilde;es acidentais ou irregulares de destrui&ccedil;&atilde;o, perda,
+        altera&ccedil;&atilde;o, comunica&ccedil;&atilde;o, difus&atilde;o ou qualquer forma de tratamento inadequado ou
+        il&iacute;cito.</p>
+      <p>17. A <u>Abrasel</u> esclarece que o compromisso de confidencialidade das informa&ccedil;&otilde;es em quest&atilde;o
+        n&atilde;o se enquadra na hip&oacute;tese de solicita&ccedil;&atilde;o das mesmas por autoridades
+        p&uacute;blicas, independentemente da esfera de poder (Judicial, Executivo e/ou Legislativo) ou ente federativo
+        (Federal, Estadual, Distrital ou Municipal), desde que com base em suas atribui&ccedil;&otilde;es legais.</p>
+      <p>18. Destacamos que, no caso de incidentes que possam gerar risco ou dano relevante para voc&ecirc; a respeito das
+        informa&ccedil;&otilde;es cadastrais, a <u>Abrasel</u> imediatamente comunicar&aacute; o ocorrido e tomar&aacute; as
+        provid&ecirc;ncias necess&aacute;rias, inclusive junto &agrave; Autoridade Nacional de Prote&ccedil;&atilde;o de
+        Dados (ANPD).</p>
+      <p>19. A <u>Abrasel</u> n&atilde;o vende, cede e/ou aluga seus contatos a absolutamente ningu&eacute;m e apenas a <u>Abrasel</u>,
+        incluindo seus colaboradores e prestadores de servi&ccedil;os, poder&atilde;o eventualmente acessar as
+        informa&ccedil;&otilde;es que voc&ecirc; fornecer espontaneamente em seu cadastro.</p>
+      <p>20. Em nossos contatos para informar sobre o Open Delivery e esclarecer suas d&uacute;vidas, poderemos
+        ocasionalmente utilizar seu nome e endere&ccedil;o de e-mail para envio de informa&ccedil;&otilde;es acerca do
+        Open Delivery, bem como para esclarecimento de suas d&uacute;vidas. Esses contatos poder&atilde;o ser gravados,
+        salvos e armazenados conforme disponibilidade da <u>Abrasel</u>. Se a qualquer tempo voc&ecirc; desejar ser removido de
+        nossa lista de contato ou tiver alguma d&uacute;vida a respeito de nossas intera&ccedil;&otilde;es,
+        poder&aacute; entrar em contato atrav&eacute;s do e-mail: lider.opendelivery&#64;abrasel.com.br.</p>
+      <p>21. Ao acessar e utilizar a <strong>ferramenta de card&aacute;pio</strong>s do Open Delivery, voc&ecirc; (<strong>Interessado Open Delivery</strong>)
+        declara a veracidade das informa&ccedil;&otilde;es e dados apresentados, que s&atilde;o de sua titularidade, ou
+        que, no caso de titularidade de terceiros, voc&ecirc; &eacute; o respons&aacute;vel legal e/ou tem
+        autoriza&ccedil;&atilde;o para tanto, sob pena de sofrer a devida responsabiliza&ccedil;&atilde;o pelo uso
+        indevido de dados e informa&ccedil;&otilde;es de terceiros.</p>
+      <p>22. A <u>Abrasel</u> refor&ccedil;a ao <strong>Interessado Open Delivery</strong> que o envio do card&aacute;pio do merchant prescinde da
+        autoriza&ccedil;&atilde;o desse, cabendo tamb&eacute;m ao <strong>Interessado Open Delivery</strong> a responsabilidade pelo
+        envio deste Disclaimer ao mesmo.</p>
+      <p>23. O acesso e uso da <strong>ferramenta de card&aacute;pio</strong>s n&atilde;o consiste na presta&ccedil;&atilde;o de qualquer
+        servi&ccedil;o; na venda de produtos; na cria&ccedil;&atilde;o de conta para acessar &aacute;reas restritas,
+        funcionalidades exclusivas, informa&ccedil;&otilde;es, documentos, estudos e reportagens desenvolvidas pela
+        <u>Abrasel</u> aos seus associados; na associa&ccedil;&atilde;o &agrave; <u>Abrasel</u>; no cadastro, cria&ccedil;&atilde;o de
+        conta ou qualquer outra forma de acesso &agrave;s funcionalidades do Open Delivery e/ou servi&ccedil;os
+        prestados pelos parceiros relacionados ao projeto.</p>
+      <p>24. Eventual valor a ser cobrado em decorr&ecirc;ncia do acesso e uso &agrave; <strong>ferramenta de card&aacute;pio</strong> do
+        Open Delivery se refere ao repasse de custos operacionais da ferramenta para gera&ccedil;&atilde;o do
+        card&aacute;pio, n&atilde;o representando qualquer presta&ccedil;&atilde;o de servi&ccedil;os, venda de produtos
+        ou licenciamento de direitos, conforme previsto no item anterior.</p>
+      <p>25. Ao acessar e utilizar a <strong>ferramenta de card&aacute;pio</strong> do Open Delivery, voc&ecirc; (<strong>Interessado Open Delivery</strong>)
+        declara ter conhecimento de que o uso em quest&atilde;o n&atilde;o constitui rela&ccedil;&atilde;o consumerista,
+        n&atilde;o imp&otilde;e nenhuma obriga&ccedil;&atilde;o &agrave; <u>Abrasel</u> - al&eacute;m das descritas neste
+        Disclaimer - e tamb&eacute;m n&atilde;o gera qualquer direito ao Interessado em rela&ccedil;&atilde;o ao Open
+        Delivery, suas eventuais funcionalidades e aos parceiros relacionados ao projeto.</p>
+      <p>26. O <strong>Interessado Open Delivery</strong> declara ter conhecimento de que a <u>Abrasel</u> &eacute; uma institui&ccedil;&atilde;o
+        associativa que representa os estabelecimentos comerciais que atuam no setor de alimenta&ccedil;&atilde;o fora
+        do lar, de forma que n&atilde;o exerce atividade econ&ocirc;mica e tampouco com fins lucrativos. O Open
+        Delivery, por sua vez, &eacute; um movimento organizado de forma open source e n&atilde;o consiste em sociedade
+        empres&aacute;ria ou no exerc&iacute;cio de atividade econ&ocirc;mica.</p>
+      <p>27. O <strong>Interessado Open Delivery</strong> declara que o acesso e uso &agrave; <strong>ferramenta de card&aacute;pio</strong> representa a sua
+        manifesta&ccedil;&atilde;o unilateral de interesse em desenvolver o card&aacute;pio do merchant, desde que
+        previamente autorizado por esse, no formato e padr&atilde;o do protocolo de API do Open Delivery, fornecendo
+        espontaneamente suas informa&ccedil;&otilde;es, declarando ali&aacute;s no consentimento com o fornecimento de
+        seus dados e estar de acordo com o quanto previsto neste Disclaimer.</p>
+      <p>28. A <u>Abrasel</u> reserva o direito de alterar o presente Disclaimer a qualquer tempo sem necessidade de aviso
+        pr&eacute;vio e/ou prazo de car&ecirc;ncia, situa&ccedil;&atilde;o em que tais altera&ccedil;&otilde;es
+        entrar&atilde;o em vigor no momento de sua edi&ccedil;&atilde;o.</p>
+      <p>29. De todo modo, em apre&ccedil;o pela transpar&ecirc;ncia, a <u>Abrasel</u> informa que sempre disponibilizar&aacute; de
+        forma f&aacute;cil e vis&iacute;vel o presente Disclaimer para acesso p&uacute;blico, independentemente de
+        cadastro. Assim, recomendamos que voc&ecirc; revise este Termo com a merecida frequ&ecirc;ncia.</p>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close>Fechar</button>
+    </mat-dialog-actions>
+  </ng-template>
 
   <div class="loading-overlay" *ngIf="loading">
     <div class="loading-content">

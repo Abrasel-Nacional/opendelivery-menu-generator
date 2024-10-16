@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,7 @@ import { IMerchant } from '../models/merchant';
 import { IExample } from '../models/example';
 import { MerchantService } from '../service/merchant.service';
 import { environment } from 'src/environments/environment';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-menu-generator',
@@ -16,6 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MenuGeneratorComponent implements OnInit
 {
+  @ViewChild('termsDialog') termsDialog!: TemplateRef<any>;
   loading = false;
   selectedOption: FormControl = new FormControl('useSchema');
   imageOption: FormControl = new FormControl('');
@@ -26,7 +28,7 @@ export class MenuGeneratorComponent implements OnInit
   selectedFile: File | null = null;
   fileName = '';
 
-  constructor(private formBuilder: FormBuilder, private merchantService: MerchantService, private router: Router, private http: HttpClient)
+  constructor(private formBuilder: FormBuilder, private merchantService: MerchantService, private router: Router, private http: HttpClient, private dialog: MatDialog)
   {
     this.form = this.formBuilder.group({
       json: [{ value: '', disabled: false }, [Validators.required]],
@@ -34,7 +36,8 @@ export class MenuGeneratorComponent implements OnInit
       menuURL: [{ value: '', disabled: true }],
       selectedOption: this.selectedOption,
       imageOption: this.imageOption,
-      selectedFile: this.selectedFile
+      selectedFile: this.selectedFile,
+      acceptTerms: [false, Validators.required],
     }) as FormGroup<IFormSubmit>;
   }
 
@@ -284,5 +287,9 @@ export class MenuGeneratorComponent implements OnInit
   checkImageSelection(): void
   {
     this.isImageSelected = !!this.formControls.menuURL.value || !!this.selectedFile;
+  }
+
+  openTermsDialog(): void {
+    this.dialog.open(this.termsDialog);
   }
 }

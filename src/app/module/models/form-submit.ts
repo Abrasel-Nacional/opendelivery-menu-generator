@@ -7,4 +7,5 @@ export interface IFormSubmit {
   selectedOption: FormControl<string | null>;
   imageOption: FormControl<string | null>;
   selectedFile: FormControl<File | null>;
+  acceptTerms: FormControl<boolean | null>;
 }
